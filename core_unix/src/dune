@@ -8,4 +8,4 @@
 
 (rule (targets config.h thread_id.h) (deps)
  (action
-  (bash "cp %{lib:jst-config:config.h} %{lib:jst-config:thread_id.h} .")))
+  (bash "cp '%{lib:jst-config:config.h}' '%{lib:jst-config:thread_id.h}' .")))
