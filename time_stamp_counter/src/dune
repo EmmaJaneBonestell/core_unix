@@ -4,4 +4,4 @@
  (libraries core core_unix ocaml_intrinsics))
 
 (rule (targets config.h) (deps)
- (action (bash "cp %{lib:jst-config:config.h} %{targets}")))
+ (action (bash "cp '%{lib:jst-config:config.h}' '%{targets}'")))
