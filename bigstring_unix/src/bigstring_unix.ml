@@ -130,10 +130,14 @@ let pwrite_assume_fd_is_nonblocking fd ~offset ?(pos = 0) ?len bstr =
 
 [%%ifdef JSC_MSG_NOSIGNAL]
 [%%define JSC_NOSIGPIPE]
+[%%else]
+[%%undef JSC_NOSIGPIPE]
 [%%endif]
 
 [%%ifdef JSC_SO_NOSIGPIPE]
 [%%define JSC_NOSIGPIPE]
+[%%else]
+[%%undef JSC_NOSIGPIPE]
 [%%endif]
 
 [%%ifdef JSC_NOSIGPIPE]
