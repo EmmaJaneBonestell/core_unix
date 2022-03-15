@@ -15,17 +15,36 @@
 #endif
 
 #include <string.h>
+#ifndef _MSC_VER
 #include <unistd.h>
+#include <stdint.h>
+#else
+#include <stdlib.h>
+#endif
 #include <errno.h>
 #include <netinet/in.h>
 #include <assert.h>
-#include <stdint.h>
 
 #ifdef __APPLE__
 #include <libkern/OSByteOrder.h>
 #define bswap_16 OSSwapInt16
 #define bswap_32 OSSwapInt32
 #define bswap_64 OSSwapInt64
+#elif __MINGW32__
+#if defined(__GNUC__) && __GNUC__ > 4
+#define bswap_16 __builtin_bswap16
+#else
+static inline uint16_t bswap_16 (uint16_t x)
+{
+    return (x << 8) | (x >> 8);
+}
+#endif
+#define bswap_32 __builtin_bswap32
+#define bswap_64 __builtin_bswap64
+#elif _MSC_VER
+#define bswap_16 _byteswap_ushort
+#define bswap_32 _byteswap_ulong
+#define bswap_64 _byteswap_uint64
 #elif __GLIBC__
 #include <byteswap.h>
 #include <malloc.h>
