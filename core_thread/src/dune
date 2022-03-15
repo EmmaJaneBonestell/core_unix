@@ -1,5 +1,5 @@
 (rule (targets config.h) (deps)
- (action (bash "cp %{lib:jst-config:config.h} .")))
+ (action (bash "cp '%{lib:jst-config:config.h}' .")))
 
 (library (name core_thread) (public_name core_unix.core_thread)
  (libraries core_kernel.caml_threads core signal_unix)
