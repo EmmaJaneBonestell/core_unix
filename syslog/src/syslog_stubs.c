@@ -1,5 +1,10 @@
 #include <string.h>
+
+#ifdef __MINGW32__
+#include "syslog_mingw.h"
+#else
 #include <syslog.h>
+#endif
 
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
